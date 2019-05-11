@@ -57,9 +57,8 @@ BACKUP-DEST-ROLE
 ```
 nifi-ingest user: 
 Nifi-Ingest
-AKIA6IVID6ZVILWZIDVC
-cCCqjOzSEMelSJTECCd9LBJJHokBvHmDs36m0naM
-
+xxxxxxx
+XXXXxxxxxXXXXxxxxxXXXXX
 given the LJM-CDP-INGEST-ROLE
 ```
 

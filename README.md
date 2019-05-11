@@ -1,6 +1,7 @@
 # idbroker-demo
-datalake, role mappig, personas and activity
+datalake, role maping, personas and activity
 
+## DataLake Bucket Structure
 
 ```CDP-DL-1
 /
@@ -39,6 +40,7 @@ datalake, role mappig, personas and activity
 		|- ???
 |- BACKUPS```
 
+## Roles to Protect DataLake Structure
 
 INGEST ROLE - read-write INPUT only
 SCIENTEST ROLE - read only INPUT - read-write OUTPUT/shared/sentiments&&financial-trends

@@ -38,7 +38,8 @@ datalake, role maping, personas and activity
 		|- logs
 	|- spark ## needs access to hive data
 		|- ???
-|- BACKUPS```
+|- BACKUPS
+```
 
 ## Roles to Protect DataLake Structure
 
@@ -66,7 +67,7 @@ systest:cloudera with mapping of systest user -> LJM-CDP-QE-DATA-SCIENTEST
 
 bdr:cloudera with mapping of backup-source group -> LJM-CDP-BACKUP-SOURCE-ROLE, LJM-CDP-BACKUP-DEST-ROLE
 
-Usecases:
+### Usecases:
 
 1. No access without kinit as a mapped identity
 2. Ingest user - Read/Write access to INPUT paths of data lake bucket - no access to OUTPUT paths
@@ -89,7 +90,7 @@ Usecases:
 9. Spark use of IDBroker
     - simple word count of insurance data
 
-# Personas - separate tabs in terminal
+### Personas - separate tabs in terminal
 
 1. systest - Data scientist - ETL (as systest)
 2. BDR - backup source - readonly (as bdr)
@@ -102,6 +103,7 @@ hadoop distcp s3a://cldr-cdp-dl-1/INPUT/tweets/summary/2019/05/10/2019-05-10T19-
 
 ## spark-shell data scientest
 
+```
 val sc.hadoopConfiguration.set("fs.s3a.delegation.token.binding", "org.apache.knox.gateway.cloud.idbroker.s3a.IDBDelegationTokenBinding")
 
 val sc.hadoopConfiguration.set("fs.s3a.ext.cab.address", "https://karthik-sdx-base-1.vpc.cloudera.com:8444/gateway")
@@ -185,10 +187,11 @@ scala> df.select("text").show()
 |RT @angryislander...|
 +--------------------+
 only showing top 20 rows
-
+```
 
 ## Hive External Table csv
 
+```
 [root@karthik-sdx-base-1 ~]# beeline
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/opt/cloudera/parcels/CDH-6.0.99-1.cdh6.0.99.p0.129/jars/log4j-slf4j-impl-2.10.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
@@ -209,13 +212,17 @@ Connecting to jdbc:hive2://karthik-sdx-base-1.vpc.cloudera.com:10000/default;pri
 Connected to: Apache Hive (version 3.1.0.6.0.99.0-129)
 Driver: Hive JDBC (version 3.1.0.6.0.99.0-129)
 Transaction isolation: TRANSACTION_REPEATABLE_READ
+```
 
 ### Create external table
 
+```
 0: jdbc:hive2://karthik-sdx-base-1.vpc.cloude> CREATE EXTERNAL TABLE FL_INS(`policyID` STRING,`statecode` STRING,`county` STRING,`eq_site_limit` STRING,`hu_site_limit` STRING,`fl_site_limit` STRING,`fr_site_limit` STRING,`tiv_2011` STRING,`tiv_2012` STRING,`eq_site_deductible` STRING,`hu_site_deductible` STRING,`fl_site_deductible` STRING,`fr_site_deductible` STRING,`point_latitude` STRING,`point_longitude` STRING,`line` STRING,`construction` STRING,`point_granularity` STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY "," LOCATION "s3a://cldr-cdp-dl-1/OUTPUT/shared/insurance/FL/" TBLPROPERTIES ("skip.header.line.count"="1");
+```
 
 ### Execute query
 
+```
 0: jdbc:hive2://karthik-sdx-base-1.vpc.cloude> select policyid, fl_site_deductible, line from fl_ins LIMIT 10;
 INFO  : Compiling command(queryId=hive_20190511114553_7e44a7d9-9044-432a-b9b3-94954004e457): select policyid, fl_site_deductible, line from fl_ins LIMIT 10
 INFO  : Semantic Analysis Completed (retrial = false)
@@ -239,12 +246,13 @@ INFO  : OK
 | 142071    | 0                   | Residential  |
 +-----------+---------------------+--------------+
 10 rows selected (8.23 seconds)
-
+```
 
 ## Hive and ORC
 
 ### create external table
 
+```
 set hive.cli.errors.ignore=true;
 set hive.exec.dynamic.partition.mode=nonstrict;
 set hive.exec.dynamic.partition=true;
@@ -295,3 +303,4 @@ My New Single "Brand New Drip" Is Now Available On Spotify, Tidal, Amazon And Go
 +----------------------+----------------------------------------------------+
 10 rows selected (2.054 seconds)
 0: jdbc:hive2://karthik-sdx-base-1.vpc.cloude> Closing: 0: jdbc:hive2://karthik-sdx-base-1.vpc.cloudera.com:10000/default;principal=hive/_HOST@VPC.CLOUDERA.COM
+```

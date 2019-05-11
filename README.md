@@ -43,22 +43,28 @@ datalake, role maping, personas and activity
 
 ## Roles to Protect DataLake Structure
 
+```
 INGEST ROLE - read-write INPUT only
 SCIENTEST ROLE - read only INPUT - read-write OUTPUT/shared/sentiments&&financial-trends
 TEAM-A SCIENTEST ROLE - read only INPUT - read-write OUTPUT/shared/sentiments&&financial-trends+teams/team-A
 TABULAR-APP-ROLE (hive) - read-write OUTPUT/shared/** + read-write OUTPUT/hive/**
 BACKUP-SOURCE-ROLE
 BACKUP-DEST-ROLE
+```
 
-// HDF ingest of twitter data
+### HDF ingest of twitter data
+
+```
 nifi-ingest user: 
 Nifi-Ingest
 AKIA6IVID6ZVILWZIDVC
 cCCqjOzSEMelSJTECCd9LBJJHokBvHmDs36m0naM
 
 given the LJM-CDP-INGEST-ROLE
+```
 
-// shell based
+### shell based users
+
 nifi:cloudera with mapping of ingest group -> LJM-CDP-INGEST-ROLE
 
 lmccay:cloudera with mapping of lmccay user -> LJM-CDP-DATA-SCIENTEST
@@ -99,8 +105,9 @@ bdr:cloudera with mapping of backup-source group -> LJM-CDP-BACKUP-SOURCE-ROLE, 
 4. nifi - Ingest - ingest user read/write to INPUT only (as nifi)
 
 ## ETL Data Worker (distcp)
+```
 hadoop distcp s3a://cldr-cdp-dl-1/INPUT/tweets/summary/2019/05/10/2019-05-10T19-23-32-100-summary-tweets-168746aa-2620-4a76-9b96-10612e4799f2.orc s3a://cldr-cdp-dl-1/OUTPUT/shared/tweets.orc
-
+```
 ## spark-shell data scientest
 
 ```

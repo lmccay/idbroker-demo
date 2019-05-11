@@ -1,7 +1,8 @@
 # idbroker-demo
 datalake, role mappig, personas and activity
 
-CDP-DL-1
+
+```CDP-DL-1
 /
 |-INPUT
 	|- tweets
@@ -36,7 +37,7 @@ CDP-DL-1
 		|- logs
 	|- spark ## needs access to hive data
 		|- ???
-|- BACKUPS
+|- BACKUPS```
 
 
 INGEST ROLE - read-write INPUT only

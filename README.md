@@ -4,7 +4,7 @@ datalake, role maping, personas and activity
 ## DataLake Bucket Structure
 
 ```
-CDP-DL-1
+CLDR-CDP-DL-1
 /
 |-INPUT
 	|- tweets

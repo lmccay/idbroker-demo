@@ -1,7 +1,7 @@
 # idbroker-demo
 datalake, role maping, personas and activity
 
-## DataLake Bucket Structure
+## Data Lake Bucket Structure
 
 ```
 CLDR-CDP-DL-1
@@ -42,7 +42,7 @@ CLDR-CDP-DL-1
 |- BACKUPS
 ```
 
-## Roles to Protect DataLake Structure
+## Roles to Protect Data Lake Structure
 
 ```
 INGEST ROLE - read-write INPUT only
